@@ -2390,11 +2390,15 @@
 
         try {
           // Call Netlify function to get SimpleSwap exchange URL
-          const response = await fetch("/.netlify/functions/buy-now", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ amountUSD: totalPrice }),
-          });
+          // Using absolute URL for router compatibility (auralo.store/hoodie-backless)
+          const response = await fetch(
+            "https://auralo-backluxe-hoodie.netlify.app/.netlify/functions/buy-now",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ amountUSD: totalPrice }),
+            },
+          );
 
           const data = await response.json();
           const url = data.exchangeUrl || data.url;
