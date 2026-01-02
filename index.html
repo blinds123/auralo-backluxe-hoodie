@@ -147,11 +147,11 @@
 
       .tiktok-overlay.question {
         top: 20px;
-        left: 20px;
+        right: 20px;
       }
 
       .tiktok-overlay.answer {
-        bottom: 20px;
+        top: 90px;
         right: 20px;
       }
 
@@ -1429,15 +1429,11 @@
           alt="Auralo BackLuxe Hoodie - Premium rhinestone mesh back"
         />
         <div class="tiktok-overlay question">
-          <div class="reply-header">Reply to @StylinSophie</div>
-          <div class="overlay-content">
-            <div class="avatar"></div>
-            <span class="overlay-text">Is the sparkle tacky tho? 🤔</span>
-          </div>
+          <span class="overlay-text">Is the sparkle tacky tho?</span>
         </div>
         <div class="tiktok-overlay answer">
           <div class="reply-header">
-            Reply to @StylinSophie <span class="verified">✓</span>
+            Reply to @StylinSophie's <span class="verified">✓</span> comment
           </div>
           <div class="overlay-content">
             <div class="avatar"></div>
@@ -1761,15 +1757,11 @@
           alt="BackLuxe Hoodie lifestyle - coffee run"
         />
         <div class="tiktok-overlay question">
-          <div class="reply-header">Reply to @FashionQueenK</div>
-          <div class="overlay-content">
-            <div class="avatar"></div>
-            <span class="overlay-text">Can you actually wear this out? 🤷‍♀️</span>
-          </div>
+          <span class="overlay-text">Can you actually wear this out? 🤷‍♀️</span>
         </div>
         <div class="tiktok-overlay answer">
           <div class="reply-header">
-            Reply to @FashionQueenK <span class="verified">✓</span>
+            Reply to @FashionQueenK's <span class="verified">✓</span> comment
           </div>
           <div class="overlay-content">
             <div class="avatar"></div>
@@ -1799,15 +1791,11 @@
           alt="BackLuxe Hoodie gym style"
         />
         <div class="tiktok-overlay question">
-          <div class="reply-header">Reply to @GymGirlJess</div>
-          <div class="overlay-content">
-            <div class="avatar"></div>
-            <span class="overlay-text">How's the quality though?</span>
-          </div>
+          <span class="overlay-text">How's the quality though?</span>
         </div>
         <div class="tiktok-overlay answer">
           <div class="reply-header">
-            Reply to @GymGirlJess <span class="verified">✓</span>
+            Reply to @GymGirlJess's <span class="verified">✓</span> comment
           </div>
           <div class="overlay-content">
             <div class="avatar"></div>
@@ -1833,10 +1821,26 @@
 
     <!-- 20. LIFESTYLE IMAGE -->
     <section class="lifestyle-section">
-      <img
-        src="./images/product/download (32).png"
-        alt="BackLuxe Hoodie yoga style"
-      />
+      <div class="main-img-container">
+        <img
+          src="./images/product/download (32).png"
+          alt="BackLuxe Hoodie yoga style"
+        />
+        <div class="tiktok-overlay question">
+          <span class="overlay-text">Does it stay in place when moving?</span>
+        </div>
+        <div class="tiktok-overlay answer">
+          <div class="reply-header">
+            Reply to @YogaWithMia's <span class="verified">✓</span> comment
+          </div>
+          <div class="overlay-content">
+            <div class="avatar"></div>
+            <span class="overlay-text"
+              >Wore it through my entire flow class 🧘‍♀️</span
+            >
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 21. STORY SECTION -->
@@ -1862,10 +1866,26 @@
 
     <!-- 22. LIFESTYLE IMAGE -->
     <section class="lifestyle-section">
-      <img
-        src="./images/product/download (36).png"
-        alt="BackLuxe Hoodie street style"
-      />
+      <div class="main-img-container">
+        <img
+          src="./images/product/download (36).png"
+          alt="BackLuxe Hoodie street style"
+        />
+        <div class="tiktok-overlay question">
+          <span class="overlay-text">What do you pair it with?</span>
+        </div>
+        <div class="tiktok-overlay answer">
+          <div class="reply-header">
+            Reply to @StreetStyleSoph's <span class="verified">✓</span> comment
+          </div>
+          <div class="overlay-content">
+            <div class="avatar"></div>
+            <span class="overlay-text"
+              >Goes with literally everything! Jeans, leggings, skirts 🔥</span
+            >
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 23. VALUE SECTION -->
@@ -2351,18 +2371,47 @@
 
       function addOrderBump() {
         // Add order bump and redirect to SimpleSwap
-        redirectToCheckout(selectedPrice + 9);
+        processCheckout(selectedPrice + 9);
       }
 
       function skipOrderBump() {
         // Skip order bump and redirect to SimpleSwap
-        redirectToCheckout(selectedPrice);
+        processCheckout(selectedPrice);
       }
 
-      function redirectToCheckout(totalPrice) {
-        // SimpleSwap checkout URL with onrender pool
-        const checkoutUrl = `https://simpleswap-automation-1.onrender.com/checkout?amount=${totalPrice}&product=auralo-backluxe-hoodie&currency=USD`;
-        window.location.href = checkoutUrl;
+      async function processCheckout(totalPrice) {
+        // Show loading state
+        const popup = document.getElementById("orderBumpPopup");
+        const buttons = popup.querySelectorAll("button");
+        buttons.forEach((btn) => {
+          btn.disabled = true;
+          btn.style.opacity = "0.7";
+        });
+
+        try {
+          // Call Netlify function to get SimpleSwap exchange URL
+          const response = await fetch("/.netlify/functions/buy-now", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ amountUSD: totalPrice }),
+          });
+
+          const data = await response.json();
+          const url = data.exchangeUrl || data.url;
+
+          if (url) {
+            window.location.href = url;
+          } else {
+            throw new Error("No payment URL received");
+          }
+        } catch (error) {
+          console.error("Checkout error:", error);
+          alert("Error processing order. Please try again.");
+          buttons.forEach((btn) => {
+            btn.disabled = false;
+            btn.style.opacity = "1";
+          });
+        }
       }
 
       // ===== SIZE CHART MODAL =====
