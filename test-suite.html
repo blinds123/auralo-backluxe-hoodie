@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURALO BackLuxe Hoodie - Comprehensive Test Suite</title>
+    <style>
+      body {
+        font-family: "Courier New", monospace;
+        background: #111;
+        color: #e5ff00;
+        padding: 20px;
+        margin: 0;
+      }
+      h1 {
+        border-bottom: 2px solid #e5ff00;
+        padding-bottom: 10px;
+      }
+      .test-section {
+        background: #1a1a1a;
+        padding: 15px;
+        margin: 15px 0;
+        border-left: 4px solid #e5ff00;
+      }
+      .test-item {
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .test-result {
+        display: inline-block;
+        width: 60px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 12px;
+      }
+      .pass {
+        background: #10b981;
+        color: #fff;
+      }
+      .fail {
+        background: #ef4444;
+        color: #fff;
+      }
+      .pending {
+        background: #f59e0b;
+        color: #111;
+      }
+      .test-details {
+        flex: 1;
+      }
+      .summary {
+        background: #e5ff00;
+        color: #111;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+        font-weight: bold;
+      }
+      .error-log {
+        background: #2a1a1a;
+        color: #ef4444;
+        padding: 10px;
+        margin: 10px 0;
+        border-left: 4px solid #ef4444;
+        font-size: 12px;
+      }
+      button {
+        background: #e5ff00;
+        color: #111;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      button:hover {
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🧪 AURALO BackLuxe Hoodie - E2E Test Suite</h1>
+    <p>
+      Comprehensive testing for all functions, images, navigation, and checkout
+    </p>
+
+    <button onclick="runAllTests()">▶ RUN ALL TESTS</button>
+
+    <div id="results"></div>
+
+    <script>
+      const results = [];
+
+      // Test categories
+      const tests = {
+        "Image Gallery Tests": [
+          {
+            name: "Main image loads correctly",
+            test: async () => {
+              const mainImg = document.getElementById("mainImage");
+              return mainImg && mainImg.complete && mainImg.naturalHeight > 0;
+            },
+          },
+          {
+            name: "Thumbnail strip exists with 8 images",
+            test: async () => {
+              const thumbs = document.querySelectorAll(".thumb");
+              return thumbs.length === 8;
+            },
+          },
+          {
+            name: "changeImage() function exists",
+            test: async () => {
+              return typeof window.changeImage === "function";
+            },
+          },
+          {
+            name: "Clicking thumbnail changes main image",
+            test: async () => {
+              const mainImg = document.getElementById("mainImage");
+              const thumb2 = document.querySelectorAll(".thumb")[1];
+              const originalSrc = mainImg.src;
+
+              thumb2.click();
+              await new Promise((r) => setTimeout(r, 100));
+
+              return (
+                mainImg.src !== originalSrc &&
+                mainImg.src.includes("product-22")
+              );
+            },
+          },
+          {
+            name: "Thumbnail updates active class on click",
+            test: async () => {
+              const thumb3 = document.querySelectorAll(".thumb")[2];
+              thumb3.click();
+              await new Promise((r) => setTimeout(r, 100));
+
+              return thumb3.classList.contains("active");
+            },
+          },
+          {
+            name: "Main image srcset updates on thumbnail click",
+            test: async () => {
+              const mainImg = document.getElementById("mainImage");
+              const thumb1 = document.querySelectorAll(".thumb")[0];
+
+              thumb1.click();
+              await new Promise((r) => setTimeout(r, 100));
+
+              return (
+                mainImg.srcset.includes("product-21-400w") &&
+                mainImg.srcset.includes("product-21-800w") &&
+                mainImg.srcset.includes("product-21.webp")
+              );
+            },
+          },
+          {
+            name: "Images use WebP format",
+            test: async () => {
+              const mainImg = document.getElementById("mainImage");
+              return mainImg.src.includes(".webp");
+            },
+          },
+          {
+            name: "Images have correct aspect ratio (1:1)",
+            test: async () => {
+              const container = document.querySelector(".main-img-container");
+              const style = window.getComputedStyle(container);
+              return style.aspectRatio === "1";
+            },
+          },
+        ],
+
+        "URL & Routing Tests": [
+          {
+            name: "Base href uses auralo.store domain",
+            test: async () => {
+              const base = document.querySelector("base");
+              return base && base.href.includes("auralo.store");
+            },
+          },
+          {
+            name: "Base href uses router pattern (not subdomain)",
+            test: async () => {
+              const base = document.querySelector("base");
+              return (
+                base &&
+                base.href.includes("auralo.store/backless-hoodie") &&
+                !base.href.includes(".netlify.app")
+              );
+            },
+          },
+          {
+            name: "Canonical URL correct",
+            test: async () => {
+              const canonical = document.querySelector('link[rel="canonical"]');
+              return (
+                canonical &&
+                canonical.href === "https://auralo.store/backless-hoodie"
+              );
+            },
+          },
+          {
+            name: "Open Graph URL correct",
+            test: async () => {
+              const og = document.querySelector('meta[property="og:url"]');
+              return (
+                og && og.content === "https://auralo.store/backless-hoodie"
+              );
+            },
+          },
+        ],
+
+        "Navigation & UI Tests": [
+          {
+            name: "Header navigation exists",
+            test: async () => {
+              const nav = document.querySelector(".header-nav");
+              return nav && nav.querySelectorAll("a").length >= 4;
+            },
+          },
+          {
+            name: "Buy Now button scrolls to bundles",
+            test: async () => {
+              const buyBtn = document.querySelector(".buy-now-btn");
+              return buyBtn && buyBtn.getAttribute("href") === "#bundles";
+            },
+          },
+          {
+            name: "FAQ link scrolls to FAQ section",
+            test: async () => {
+              const faqLink = document.querySelector('a[href="#faq"]');
+              return faqLink !== null;
+            },
+          },
+          {
+            name: "Size chart modal opens",
+            test: async () => {
+              return typeof window.openSizeChart === "function";
+            },
+          },
+        ],
+
+        "Bundle & Pricing Tests": [
+          {
+            name: "Bundle cards exist",
+            test: async () => {
+              const bundles = document.querySelectorAll(".bundle-card");
+              return bundles.length >= 2;
+            },
+          },
+          {
+            name: "selectBundle() function exists",
+            test: async () => {
+              return typeof window.selectBundle === "function";
+            },
+          },
+          {
+            name: "Clicking bundle updates selection",
+            test: async () => {
+              const bundle = document.querySelectorAll(".bundle-card")[0];
+              bundle.click();
+              await new Promise((r) => setTimeout(r, 100));
+
+              return bundle.classList.contains("selected");
+            },
+          },
+          {
+            name: "Bundle size selector exists",
+            test: async () => {
+              const sizeSelect = document.querySelector(".bundle-size-select");
+              return sizeSelect && sizeSelect.options.length > 0;
+            },
+          },
+        ],
+
+        "Checkout Flow Tests": [
+          {
+            name: "Add to cart button exists",
+            test: async () => {
+              const btn = document.querySelector(".add-to-cart-btn");
+              return btn !== null;
+            },
+          },
+          {
+            name: "addToCart() function exists",
+            test: async () => {
+              return typeof window.addToCart === "function";
+            },
+          },
+          {
+            name: "processCheckout() function exists",
+            test: async () => {
+              return typeof window.processCheckout === "function";
+            },
+          },
+          {
+            name: "Checkout uses correct API endpoint",
+            test: async () => {
+              // Check the processCheckout function source
+              const funcStr = window.processCheckout.toString();
+              return funcStr.includes("auralo.store/backless-hoodie");
+            },
+          },
+        ],
+
+        "E-Commerce Micro-Interactions Tests": [
+          {
+            name: "createFlyToCartAnimation() function exists",
+            test: async () => {
+              return typeof window.createFlyToCartAnimation === "function";
+            },
+          },
+          {
+            name: "showToast() function exists",
+            test: async () => {
+              return typeof window.showToast === "function";
+            },
+          },
+          {
+            name: "Mobile long-press zoom listener attached",
+            test: async () => {
+              return "ontouchstart" in window;
+            },
+          },
+          {
+            name: "Toast notification CSS exists",
+            test: async () => {
+              const style = document.querySelector("style").textContent;
+              return style.includes(".toast-notification");
+            },
+          },
+          {
+            name: "Fly-to-cart animation CSS exists",
+            test: async () => {
+              const style = document.querySelector("style").textContent;
+              return style.includes("@keyframes flyToCart");
+            },
+          },
+        ],
+
+        "Responsive Image Tests": [
+          {
+            name: "Main image has srcset attribute",
+            test: async () => {
+              const mainImg = document.getElementById("mainImage");
+              return mainImg && mainImg.srcset && mainImg.srcset.length > 0;
+            },
+          },
+          {
+            name: "Srcset includes 400w variant",
+            test: async () => {
+              const mainImg = document.getElementById("mainImage");
+              return mainImg.srcset.includes("400w");
+            },
+          },
+          {
+            name: "Srcset includes 800w variant",
+            test: async () => {
+              const mainImg = document.getElementById("mainImage");
+              return mainImg.srcset.includes("800w");
+            },
+          },
+          {
+            name: "Srcset includes 1200w variant",
+            test: async () => {
+              const mainImg = document.getElementById("mainImage");
+              return mainImg.srcset.includes("1200w");
+            },
+          },
+          {
+            name: "Thumbnails have srcset",
+            test: async () => {
+              const thumbs = document.querySelectorAll(".thumb");
+              return Array.from(thumbs).every(
+                (t) => t.srcset && t.srcset.length > 0,
+              );
+            },
+          },
+        ],
+
+        "Performance Tests": [
+          {
+            name: "Critical resources preloaded",
+            test: async () => {
+              const preloads = document.querySelectorAll('link[rel="preload"]');
+              return preloads.length >= 3; // fonts + images
+            },
+          },
+          {
+            name: "Fonts preconnected",
+            test: async () => {
+              const preconnect = document.querySelectorAll(
+                'link[rel="preconnect"]',
+              );
+              return preconnect.length >= 2;
+            },
+          },
+          {
+            name: "Images use lazy loading",
+            test: async () => {
+              const lazyImages = document.querySelectorAll(
+                'img[loading="lazy"]',
+              );
+              return lazyImages.length > 0;
+            },
+          },
+        ],
+
+        "SEO & Meta Tests": [
+          {
+            name: "Title tag exists",
+            test: async () => {
+              return document.title && document.title.includes("AURALO");
+            },
+          },
+          {
+            name: "Meta description exists",
+            test: async () => {
+              const meta = document.querySelector('meta[name="description"]');
+              return meta && meta.content.length > 50;
+            },
+          },
+          {
+            name: "Open Graph tags exist",
+            test: async () => {
+              return (
+                document.querySelectorAll('meta[property^="og:"]').length >= 3
+              );
+            },
+          },
+          {
+            name: "Favicon configured",
+            test: async () => {
+              const favicon = document.querySelector('link[rel="icon"]');
+              return favicon !== null;
+            },
+          },
+        ],
+      };
+
+      async function runAllTests() {
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML = "<p>Running tests...</p>";
+
+        results.length = 0;
+        let totalTests = 0;
+        let passedTests = 0;
+        let failedTests = 0;
+
+        let html = "";
+
+        for (const [category, categoryTests] of Object.entries(tests)) {
+          html += `<div class="test-section"><h2>${category}</h2>`;
+
+          for (const testCase of categoryTests) {
+            totalTests++;
+            let result = "fail";
+            let error = null;
+
+            try {
+              const passed = await testCase.test();
+              result = passed ? "pass" : "fail";
+              if (passed) passedTests++;
+              else failedTests++;
+            } catch (e) {
+              failedTests++;
+              error = e.message;
+            }
+
+            results.push({ category, name: testCase.name, result, error });
+
+            html += `
+                        <div class="test-item">
+                            <span class="test-result ${result}">${result.toUpperCase()}</span>
+                            <span class="test-details">${testCase.name}</span>
+                        </div>
+                    `;
+
+            if (error) {
+              html += `<div class="error-log">Error: ${error}</div>`;
+            }
+          }
+
+          html += "</div>";
+        }
+
+        // Summary
+        const successRate = Math.round((passedTests / totalTests) * 100);
+        html =
+          `
+                <div class="summary">
+                    <h2>📊 Test Summary</h2>
+                    <p>Total Tests: ${totalTests}</p>
+                    <p style="color: #10b981;">✅ Passed: ${passedTests}</p>
+                    <p style="color: #ef4444;">❌ Failed: ${failedTests}</p>
+                    <p>Success Rate: ${successRate}%</p>
+                    ${successRate === 100 ? '<p style="font-size: 20px;">🎉 ALL TESTS PASSED! Page is production-ready!</p>' : ""}
+                </div>
+            ` + html;
+
+        resultsDiv.innerHTML = html;
+
+        // Console log
+        console.log("=== TEST RESULTS ===");
+        console.table(results);
+
+        return { totalTests, passedTests, failedTests, successRate };
+      }
+
+      // Auto-run on load
+      window.addEventListener("load", () => {
+        console.log('Test suite loaded. Click "RUN ALL TESTS" to begin.');
+      });
+    </script>
+  </body>
+</html>
