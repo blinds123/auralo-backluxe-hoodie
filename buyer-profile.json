@@ -1,0 +1,231 @@
+{
+  "product": {
+    "name": "Auralo BackLuxe Hoodie",
+    "brand": "AURALO",
+    "type": "Premium Rhinestone Mesh-Back Hoodie",
+    "unique_feature": "Sparkle rhinestone mesh V-panel on back",
+    "color": "Gray/Charcoal with silver rhinestone mesh"
+  },
+  "target_demographic": {
+    "primary": "Fashion-forward women 18-35",
+    "secondary": "Style-conscious women 35-45",
+    "lifestyle": [
+      "Gym-goers",
+      "Yoga enthusiasts",
+      "Coffee shop workers",
+      "Social media users",
+      "Fashion influencers"
+    ],
+    "income_level": "Middle to upper-middle class",
+    "confidence_percentage": 87
+  },
+  "pain_points": [
+    {
+      "pain": "Boring, basic hoodies that look like everyone else's",
+      "intensity": 9,
+      "language": "I'm so tired of looking basic in my hoodie"
+    },
+    {
+      "pain": "Can't find athleisure that's both comfy AND stylish",
+      "intensity": 9,
+      "language": "Why do I have to choose between comfort and looking cute?"
+    },
+    {
+      "pain": "Want to stand out but not be over-the-top",
+      "intensity": 8,
+      "language": "I want subtle glam, not disco ball energy"
+    },
+    {
+      "pain": "Tired of cheap quality that falls apart after washing",
+      "intensity": 8,
+      "language": "Spent $50 on a hoodie and it looked trashed after 2 washes"
+    },
+    {
+      "pain": "Nothing transitions well from gym to brunch to errands",
+      "intensity": 7,
+      "language": "I need something I can wear literally everywhere"
+    }
+  ],
+  "desires": [
+    {
+      "desire": "Feel confident and stylish without trying too hard",
+      "intensity": 10,
+      "language": "I just want to look effortlessly put together"
+    },
+    {
+      "desire": "Get compliments and attention on their style",
+      "intensity": 9,
+      "language": "Where did you get that?! is my favorite thing to hear"
+    },
+    {
+      "desire": "Own unique pieces nobody else has",
+      "intensity": 9,
+      "language": "I hate seeing someone wearing the same thing as me"
+    },
+    {
+      "desire": "Versatile wardrobe staple that works for multiple occasions",
+      "intensity": 8,
+      "language": "One piece, endless outfits - that's the dream"
+    },
+    {
+      "desire": "Premium quality that lasts and feels luxurious",
+      "intensity": 8,
+      "language": "I'd rather pay more for something that actually lasts"
+    }
+  ],
+  "language_patterns": {
+    "tone": "Confident, playful, Gen Z/Millennial casual",
+    "phrases": [
+      "It's giving main character energy",
+      "The back is everything",
+      "Obsessed with this",
+      "Goes with literally everything",
+      "The compliments don't stop",
+      "Low-key extra and I'm here for it",
+      "Finally something different",
+      "Chef's kiss",
+      "The sparkle without being too much"
+    ],
+    "emoji_style": ["sparkles", "fire", "heart_eyes", "100", "star"]
+  },
+  "objections": [
+    {
+      "objection": "Is the rhinestone mesh tacky?",
+      "response": "It's subtle sparkle - catches light beautifully without being over the top"
+    },
+    {
+      "objection": "Will it hold up in the wash?",
+      "response": "Premium construction - wash inside out, cold water, air dry. Built to last."
+    },
+    {
+      "objection": "Is it see-through?",
+      "response": "The mesh panel is decorative - it's not fully open, so you're covered"
+    },
+    {
+      "objection": "Can I actually wear this to the gym?",
+      "response": "100% - breathable mesh keeps you cool during workouts"
+    },
+    {
+      "objection": "What size should I get?",
+      "response": "Oversized fit - size down for fitted, true to size for comfy oversized"
+    }
+  ],
+  "tiktok_overlay_examples": [
+    {
+      "question": "Is the sparkle tacky tho?",
+      "answer": "It's giving subtle glam not disco ball",
+      "emoji": "sparkles"
+    },
+    {
+      "question": "Can you actually wear this out?",
+      "answer": "Girl I wear it EVERYWHERE. Gym, brunch, coffee runs",
+      "emoji": "100"
+    },
+    {
+      "question": "Does the back show your bra?",
+      "answer": "Nope it's decorative mesh not see-through",
+      "emoji": "ok_hand"
+    },
+    {
+      "question": "Is it worth the price?",
+      "answer": "The compliments alone make it worth it",
+      "emoji": "fire"
+    },
+    {
+      "question": "How's the quality?",
+      "answer": "Had mine for 6 months still looks brand new",
+      "emoji": "heart_eyes"
+    }
+  ],
+  "reviews_to_generate": [
+    {
+      "name": "Mia T.",
+      "title": "Fitness Influencer",
+      "headline": "The back is EVERYTHING",
+      "text": "I've gotten so many compliments on this hoodie. The sparkle mesh back catches the light perfectly in my gym selfies. Finally something different!"
+    },
+    {
+      "name": "Jessica R.",
+      "title": "Marketing Manager",
+      "headline": "My new favorite piece",
+      "text": "I wear this to the office, to brunch, to yoga - it goes with everything. The quality is amazing and the subtle sparkle adds just the right amount of glam."
+    },
+    {
+      "name": "Aaliyah M.",
+      "title": "Dance Instructor",
+      "headline": "Obsessed is an understatement",
+      "text": "Finally a hoodie that doesn't look basic. My students always ask where I got it. The mesh back is breathable which is perfect for teaching."
+    },
+    {
+      "name": "Emma L.",
+      "title": "Coffee Shop Regular",
+      "headline": "Gets compliments every single time",
+      "text": "I can't go anywhere without someone asking about this hoodie. It's comfortable enough to work in all day but stylish enough for after-work drinks."
+    },
+    {
+      "name": "Kayla S.",
+      "title": "Yoga Enthusiast",
+      "headline": "The perfect balance",
+      "text": "Not too flashy, not too basic - just right. The rhinestone mesh is subtle but eye-catching. I'm buying another one in case they sell out."
+    },
+    {
+      "name": "Brianna J.",
+      "title": "Fashion Blogger",
+      "headline": "Main character energy",
+      "text": "This hoodie has become my signature piece. The back detail elevates any outfit from basic to iconic. Worth every penny."
+    },
+    {
+      "name": "Sophia C.",
+      "title": "Gym Girlie",
+      "headline": "Gym to brunch approved",
+      "text": "I used to change after the gym but now I just throw this on and I'm ready for anything. The sparkle back makes even leggings look put together."
+    },
+    {
+      "name": "Destiny W.",
+      "title": "Content Creator",
+      "headline": "My followers are obsessed",
+      "text": "Every time I post wearing this, my DMs blow up asking for the link. The quality is chef's kiss and the style is *chefs kiss*."
+    },
+    {
+      "name": "Nicole P.",
+      "title": "Mom of Two",
+      "headline": "Finally feel like ME again",
+      "text": "As a busy mom, I needed something comfy but that still made me feel stylish. This hoodie does both. I feel confident doing school runs."
+    }
+  ],
+  "faq_questions": [
+    {
+      "icon": "diamond",
+      "question": "Is the rhinestone mesh see-through?",
+      "answer": "Not at all! The mesh panel is decorative with rhinestone embellishments - it catches light beautifully but you're fully covered. It's all about the sparkle, not the show."
+    },
+    {
+      "icon": "sparkles",
+      "question": "Will the rhinestones fall off after washing?",
+      "answer": "Our rhinestones are heat-bonded for durability. Just wash inside out, cold water, and air dry - your sparkle will stay intact wash after wash."
+    },
+    {
+      "icon": "ruler",
+      "question": "What's the fit like? Should I size up or down?",
+      "answer": "It's an intentionally oversized, relaxed fit. For a true oversized look, go with your normal size. For a more fitted look, size down one. See our size chart for exact measurements."
+    },
+    {
+      "icon": "calendar",
+      "question": "Can I wear this to the gym AND out?",
+      "answer": "That's exactly what it's designed for! The breathable mesh back keeps you cool during workouts, while the stylish design means you can go straight from gym to coffee to dinner without changing."
+    },
+    {
+      "icon": "shipping",
+      "question": "How long does shipping take?",
+      "answer": "Orders are processed within 1-2 business days. Standard shipping takes 5-7 business days, and express shipping takes 2-3 business days. You'll receive tracking info via email."
+    }
+  ],
+  "copy_direction": {
+    "headline": "THE ORIGINAL BACKLUXE HOODIE - SPARKLE WITHOUT THE BASIC",
+    "subheadline": "Premium rhinestone mesh back that turns heads without trying too hard",
+    "cta_primary": "GET MY BACKLUXE",
+    "comparison_old": "Basic boring hoodies that blend in",
+    "comparison_new": "Statement piece that gets compliments everywhere",
+    "guarantee": "30-Day Style Guarantee - If you don't get at least 5 compliments, we'll refund you. No questions asked."
+  }
+}

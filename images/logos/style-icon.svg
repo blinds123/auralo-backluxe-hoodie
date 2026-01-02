@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="styleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E5FF00"/>
+      <stop offset="50%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#E5FF00"/>
+    </linearGradient>
+    <filter id="styleGlow">
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+  </defs>
+  <!-- Hanger shape -->
+  <path d="M32 8 L32 14" stroke="#E5FF00" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="32" cy="6" r="3" fill="none" stroke="#E5FF00" stroke-width="2"/>
+  <path d="M14 32 Q14 18 32 14 Q50 18 50 32" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+  <!-- Hoodie outline hanging -->
+  <path d="M14 32 L14 54 Q14 58 18 58 L46 58 Q50 58 50 54 L50 32" fill="#111111" stroke="#222" stroke-width="1"/>
+  <!-- Rhinestone back panel detail -->
+  <rect x="22" y="36" width="20" height="18" rx="2" fill="none" stroke="url(#styleGrad)" stroke-width="1" opacity="0.8"/>
+  <!-- Sparkle rhinestones -->
+  <circle cx="26" cy="40" r="1.5" fill="#E5FF00" opacity="0.9"/>
+  <circle cx="32" cy="44" r="1.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="38" cy="40" r="1.5" fill="#E5FF00" opacity="0.9"/>
+  <circle cx="28" cy="48" r="1" fill="#ffffff" opacity="0.7"/>
+  <circle cx="36" cy="50" r="1" fill="#E5FF00" opacity="0.8"/>
+  <!-- Fashion sparkle burst -->
+  <g filter="url(#styleGlow)" transform="translate(48, 12)">
+    <path d="M0 -6 L1.5 -1.5 L6 0 L1.5 1.5 L0 6 L-1.5 1.5 L-6 0 L-1.5 -1.5 Z" fill="#E5FF00"/>
+  </g>
+</svg>

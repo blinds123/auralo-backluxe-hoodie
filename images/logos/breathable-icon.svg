@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="windGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" style="stop-color:#E5FF00;stop-opacity:0.2"/>
+      <stop offset="50%" style="stop-color:#E5FF00;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#E5FF00;stop-opacity:0.2"/>
+    </linearGradient>
+  </defs>
+  <!-- Mesh back panel outline -->
+  <rect x="18" y="8" width="28" height="48" rx="4" fill="none" stroke="#333" stroke-width="2"/>
+  <!-- Mesh pattern (rhinestone dots) -->
+  <g opacity="0.4">
+    <circle cx="26" cy="18" r="2" fill="#E5FF00"/>
+    <circle cx="38" cy="18" r="2" fill="#E5FF00"/>
+    <circle cx="32" cy="26" r="2" fill="#E5FF00"/>
+    <circle cx="26" cy="34" r="2" fill="#E5FF00"/>
+    <circle cx="38" cy="34" r="2" fill="#E5FF00"/>
+    <circle cx="32" cy="42" r="2" fill="#E5FF00"/>
+    <circle cx="26" cy="50" r="2" fill="#E5FF00"/>
+    <circle cx="38" cy="50" r="2" fill="#E5FF00"/>
+  </g>
+  <!-- Air flow arrows -->
+  <g stroke="url(#windGrad)" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <path d="M4 22 Q12 22 18 22">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M4 32 Q12 32 18 32">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M4 42 Q12 42 18 42">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+    </path>
+    <path d="M46 22 Q54 22 60 22">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="0.9s" repeatCount="indefinite"/>
+    </path>
+    <path d="M46 32 Q54 32 60 32">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="1.2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M46 42 Q54 42 60 42">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  <!-- Arrow heads -->
+  <polygon points="18,18 18,26 12,22" fill="#E5FF00" opacity="0.6"/>
+  <polygon points="18,28 18,36 12,32" fill="#E5FF00" opacity="0.8"/>
+  <polygon points="18,38 18,46 12,42" fill="#E5FF00" opacity="0.6"/>
+  <polygon points="60,18 60,26 54,22" fill="#E5FF00" opacity="0.6" transform="rotate(180 57 22)"/>
+  <polygon points="60,28 60,36 54,32" fill="#E5FF00" opacity="0.8" transform="rotate(180 57 32)"/>
+  <polygon points="60,38 60,46 54,42" fill="#E5FF00" opacity="0.6" transform="rotate(180 57 42)"/>
+</svg>

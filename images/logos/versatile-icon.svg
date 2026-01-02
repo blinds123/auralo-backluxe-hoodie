@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="versGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E5FF00"/>
+      <stop offset="100%" style="stop-color:#c4db00"/>
+    </linearGradient>
+  </defs>
+  <!-- Day/Night split circle -->
+  <circle cx="32" cy="32" r="26" fill="#111111" stroke="#E5FF00" stroke-width="1.5"/>
+  <!-- Day side (left) - sun -->
+  <path d="M32 6 A26 26 0 0 0 32 58" fill="#1a1a1a"/>
+  <circle cx="22" cy="24" r="8" fill="url(#versGrad)" opacity="0.9"/>
+  <!-- Sun rays -->
+  <g stroke="#E5FF00" stroke-width="1.5" stroke-linecap="round" opacity="0.7">
+    <line x1="22" y1="12" x2="22" y2="8"/>
+    <line x1="12" y1="24" x2="8" y2="24"/>
+    <line x1="14" y1="16" x2="10" y2="12"/>
+    <line x1="30" y1="16" x2="34" y2="12"/>
+  </g>
+  <!-- Night side (right) - moon and stars -->
+  <path d="M42 20 Q38 26 42 32 Q46 26 42 20" fill="#ffffff" opacity="0.3"/>
+  <!-- Stars -->
+  <circle cx="44" cy="40" r="1.5" fill="#E5FF00" opacity="0.8"/>
+  <circle cx="50" cy="28" r="1" fill="#ffffff" opacity="0.6"/>
+  <circle cx="46" cy="48" r="1" fill="#E5FF00" opacity="0.7"/>
+  <!-- Sparkle on hoodie (center) -->
+  <g transform="translate(32, 44)">
+    <path d="M0 -4 L1 -1 L4 0 L1 1 L0 4 L-1 1 L-4 0 L-1 -1 Z" fill="url(#versGrad)" opacity="0.9"/>
+  </g>
+  <!-- Text: 24/7 -->
+  <text x="24" y="52" font-family="Poppins, sans-serif" font-size="8" font-weight="700" fill="#E5FF00">24/7</text>
+</svg>
