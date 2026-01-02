@@ -1627,21 +1627,21 @@
         </div>
       </div>
 
-      <div class="bundle-card selected" onclick="selectBundle(this, 29)">
+      <div class="bundle-card selected" onclick="selectBundle(this, 59)">
         <span class="bundle-badge">MOST POPULAR</span>
         <div class="bundle-top">
           <div style="display: flex; align-items: flex-start">
             <div class="bundle-radio"></div>
             <div>
-              <div class="bundle-title">Single BackLuxe Hoodie</div>
+              <div class="bundle-title">Buy 1 Get 1 FREE</div>
               <span class="bundle-reviews-badge"
                 >Over 2,000+ 5 Star Reviews</span
               >
             </div>
           </div>
           <div class="bundle-prices">
-            <div class="bundle-sale-price">$29</div>
-            <div class="bundle-orig-price">$59</div>
+            <div class="bundle-sale-price">$59</div>
+            <div class="bundle-orig-price">$118</div>
           </div>
         </div>
         <div class="bundle-size-row">
@@ -1658,7 +1658,7 @@
 
       <!-- 11. ADD TO CART BUTTON -->
       <button class="add-to-cart-btn" onclick="addToCart()">
-        $29.00 - ADD TO CART
+        $59.00 - ADD TO CART
       </button>
 
       <!-- CRYPTO NOTE -->
@@ -2327,7 +2327,7 @@
       setInterval(rotateTestimonial, 4000);
 
       // ===== BUNDLE SELECTION =====
-      let selectedPrice = 29;
+      let selectedPrice = 59;
 
       function selectBundle(card, price) {
         document
@@ -2352,8 +2352,13 @@
 
       // ===== CHECKOUT FUNCTIONALITY =====
       function addToCart() {
-        // Show order bump popup
-        document.getElementById("orderBumpPopup").classList.add("active");
+        // Only show order bump for $19 option
+        if (selectedPrice === 19) {
+          document.getElementById("orderBumpPopup").classList.add("active");
+        } else {
+          // For $59, go straight to checkout
+          processCheckout(selectedPrice);
+        }
       }
 
       function addOrderBump() {
