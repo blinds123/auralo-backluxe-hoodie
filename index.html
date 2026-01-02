@@ -1422,6 +1422,58 @@
       .crypto-note img {
         height: 20px;
       }
+
+      /* ===== CHECKOUT LOADING OVERLAY ===== */
+      .checkout-loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        backdrop-filter: blur(10px);
+      }
+
+      .checkout-loading-overlay.active {
+        display: flex;
+      }
+
+      .loading-content {
+        text-align: center;
+        color: white;
+      }
+
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid rgba(229, 255, 0, 0.2);
+        border-top-color: var(--lime);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 30px;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loading-text {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: white;
+      }
+
+      .loading-subtext {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+      }
     </style>
   </head>
   <body>
@@ -2219,6 +2271,17 @@
       </div>
     </div>
 
+    <!-- CHECKOUT LOADING OVERLAY -->
+    <div class="checkout-loading-overlay" id="checkoutLoading">
+      <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <h3 class="loading-text" id="loadingText">Processing...</h3>
+        <p class="loading-subtext">
+          Please wait while we prepare your secure checkout
+        </p>
+      </div>
+    </div>
+
     <!-- SIZE CHART MODAL -->
     <div class="modal-overlay" id="sizeChartModal">
       <div class="modal-content">
@@ -2374,15 +2437,19 @@
       }
 
       async function processCheckout(totalPrice) {
-        // Show loading state
+        // Hide order bump popup if active
         const popup = document.getElementById("orderBumpPopup");
-        const buttons = popup.querySelectorAll("button");
-        buttons.forEach((btn) => {
-          btn.disabled = true;
-          btn.style.opacity = "0.7";
-        });
+        popup.classList.remove("active");
+
+        // Show loading overlay
+        const loadingOverlay = document.getElementById("checkoutLoading");
+        const loadingText = document.getElementById("loadingText");
+        loadingOverlay.classList.add("active");
 
         try {
+          // Phase 1: Processing
+          loadingText.textContent = "Processing...";
+
           // Call Netlify function to get SimpleSwap exchange URL
           // Using absolute URL for router compatibility (auralo.store/hoodie-backless)
           const response = await fetch(
@@ -2398,17 +2465,21 @@
           const url = data.exchangeUrl || data.url;
 
           if (url) {
+            // Phase 2: Redirecting
+            loadingText.textContent = "Redirecting to secure checkout...";
+
+            // Small delay to show "Redirecting" message
+            await new Promise((resolve) => setTimeout(resolve, 800));
+
+            // Redirect to SimpleSwap
             window.location.href = url;
           } else {
             throw new Error("No payment URL received");
           }
         } catch (error) {
           console.error("Checkout error:", error);
+          loadingOverlay.classList.remove("active");
           alert("Error processing order. Please try again.");
-          buttons.forEach((btn) => {
-            btn.disabled = false;
-            btn.style.opacity = "1";
-          });
         }
       }
 
